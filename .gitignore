@@ -1,0 +1,12 @@
+text_editor_scope.txt
+revised_text_editor_scope.txt
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+.venv/
