@@ -1,4 +1,4 @@
-"""Curses setup, main loop, input decoding, and command dispatch."""
+"""Curses setup, main loop, input decoding, and command dispatch """
 
 from __future__ import annotations
 
