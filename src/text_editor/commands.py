@@ -169,6 +169,9 @@ def save(state: EditorState) -> bool:
 
 def save_as(state: EditorState, path_text: str) -> bool:
     path = Path(path_text).expanduser()
+    if state.path is not None and path == state.path and not state.dirty:
+        state.set_status("already saved")
+        return True
     try:
         write_text_file_atomic(path, state.buffer, state.config)
     except EditorError as exc:
