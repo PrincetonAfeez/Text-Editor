@@ -1,4 +1,4 @@
-"""Undo/redo history implemented with reversible edit commands."""
+"""Undo/redo history implemented with reversible edit commands """
 
 from __future__ import annotations
 
