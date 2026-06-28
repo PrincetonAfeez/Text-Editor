@@ -1,4 +1,4 @@
-"""Small command-mode parser."""
+"""Small command-mode parser """
 
 from __future__ import annotations
 
