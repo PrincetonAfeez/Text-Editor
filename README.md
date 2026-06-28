@@ -18,16 +18,21 @@ python -m pip install -e ".[dev]"
 On Windows, the project depends on `windows-curses`, which is installed through
 the platform-specific dependency in `pyproject.toml`.
 
-For a reproducible, fully pinned environment, install from the lockfile instead:
+For a reproducible, fully pinned environment, install from the lockfiles instead:
 
 ```powershell
 python -m pip install -r requirements-dev.txt
 python -m pip install -e . --no-deps
 ```
 
-`requirements-dev.txt` is generated from `pyproject.toml` with `pip-compile`
-(regenerate with `pip-compile --extra dev -o requirements-dev.txt pyproject.toml`).
-The lockfile header records the Python version used to compile it; CI installs
+For runtime-only installs (no dev tools), use `requirements.txt` instead of
+`requirements-dev.txt`.
+
+`requirements-dev.txt` and `requirements.txt` are generated from `pyproject.toml`
+with `pip-compile` (regenerate with
+`pip-compile --extra dev -o requirements-dev.txt pyproject.toml` and
+`pip-compile -o requirements.txt pyproject.toml`).
+The lockfile headers record the Python version used to compile them; CI installs
 the unpinned range from `pyproject.toml` so it also catches new dependency releases.
 
 The PyPI package name is `terminal-text-editor`, but the importable module is
@@ -45,6 +50,8 @@ Use a real terminal rather than an IDE embedded console. Curses key codes and
 resize behavior vary between terminal hosts.
 
 ## Demo
+
+![Terminal text editor session](docs/demo.png)
 
 A typical session looks like this:
 
@@ -241,24 +248,27 @@ original terminal state on exit.
 
 ## Testing
 
-The test suite exercises the core logic without a live terminal:
+The test suite exercises the core logic without a live terminal (**253 tests**,
+**99% line coverage**, 4 skipped on platforms without POSIX permission semantics):
 
 ```powershell
-pytest
+python -m pytest
+python -m pytest --cov=text_editor --cov-report=term-missing
 ```
 
 Covered areas include buffer operations, cursor movement, viewport scrolling,
-command parsing, config validation, undo/redo grouping, search navigation, file
-I/O helpers, key dispatch, and rendering (against a fake screen, so no terminal
-is required). Linting and type checking round out the checks:
+command parsing and dispatch, config validation, undo/redo grouping, search
+navigation, file I/O helpers, key dispatch, app main loop, entry points, and
+rendering (against a fake screen, so no terminal is required). Linting and type
+checking round out the checks:
 
 ```powershell
-ruff check src tests
-mypy
+python -m ruff check src tests
+python -m mypy
 ```
 
-`ruff`, `mypy`, and `pytest` also run in CI on Linux and Windows for Python 3.11
-and 3.12 (see `.github/workflows/ci.yml`).
+`ruff`, `mypy`, and `pytest` (with `--cov-fail-under=98`) run in CI on Linux and
+Windows for Python 3.11 and 3.12 (see `.github/workflows/ci.yml`).
 
 ## Known Limitations
 
