@@ -1,4 +1,4 @@
-"""File open and atomic save helpers."""
+"""File open and atomic save helpers """
 
 from __future__ import annotations
 
@@ -50,6 +50,8 @@ def _raise_read_oserror(path: Path, exc: OSError) -> None:
 
 
 def _raise_save_oserror(path: Path, exc: OSError) -> None:
+    if exc.errno == errno.ENOSPC:
+        raise FileOperationError("disk full") from exc
     if exc.errno in {errno.EACCES, errno.EPERM, errno.EROFS}:
         raise FileOperationError(_permission_denied_message()) from exc
     raise FileOperationError(f"could not save {path}: {exc}") from exc
