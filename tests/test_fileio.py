@@ -1,3 +1,6 @@
+"""Tests for text_editor.fileio """
+
+import errno
 import os
 import stat
 import sys
@@ -134,6 +137,18 @@ def test_read_only_save_reports_dedicated_message(tmp_path: Path) -> None:
 
     with pytest.raises(FileOperationError, match="read-only or permission denied"):
         write_text_file_atomic(path, TextBuffer.from_text("hello"), EditorConfig())
+
+
+def test_save_disk_full_reports_dedicated_message(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    path = tmp_path / "out.txt"
+
+    def raise_enospc(*_args: object, **_kwargs: object) -> None:
+        raise OSError(errno.ENOSPC, "No space left on device")
+
+    monkeypatch.setattr("text_editor.fileio.os.replace", raise_enospc)
+
+    with pytest.raises(FileOperationError, match="disk full"):
+        write_text_file_atomic(path, TextBuffer.from_text("data"), EditorConfig())
 
 
 def test_failed_save_does_not_mutate_line_ending(tmp_path: Path) -> None:
