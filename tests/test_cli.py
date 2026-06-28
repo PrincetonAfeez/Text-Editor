@@ -1,3 +1,5 @@
+"""Tests for text_editor.cli """
+
 import pytest
 
 from text_editor import __version__
