@@ -1,4 +1,4 @@
-"""Display-width helpers for tab- and wide-character-aware rendering.
+"""Display-width helpers for tab- and wide-character-aware rendering 
 
 These functions are curses-free so the rendering math can be unit-tested without
 a terminal. East Asian wide/fullwidth characters occupy two columns; everything
