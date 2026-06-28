@@ -1,4 +1,4 @@
-"""User-facing exceptions for editor operations."""
+"""User-facing exceptions for editor operations """
 
 from __future__ import annotations
 
