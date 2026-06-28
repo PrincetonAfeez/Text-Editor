@@ -1,5 +1,5 @@
 # CORE Requirements
-
+ 
 This document summarizes the **CORE** scope for the terminal text editor capstone.
 Stretch goals (word motion, selection, regex search, recovery journal, and similar)
 are intentionally deferred.
