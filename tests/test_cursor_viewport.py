@@ -1,3 +1,5 @@
+"""Tests for text_editor.cursor and text_editor.viewport """
+
 from text_editor.buffer import TextBuffer
 from text_editor.cursor import Cursor, move_down, move_left, move_right, move_up
 from text_editor.viewport import Viewport, ensure_visible
