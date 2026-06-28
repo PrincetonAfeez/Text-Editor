@@ -1,4 +1,4 @@
-"""Editor state model."""
+"""Editor state model """
 
 from __future__ import annotations
 
