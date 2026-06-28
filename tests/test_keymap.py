@@ -1,5 +1,6 @@
-from text_editor.keymap import available_keymaps, default_keymap, keymap_for
+"""Tests for text_editor.keymap """
 
+from text_editor.keymap import available_keymaps, default_keymap, keymap_for
 
 def test_default_is_a_registered_keymap() -> None:
     assert "default" in available_keymaps()
