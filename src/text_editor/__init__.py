@@ -1,4 +1,4 @@
-"""Terminal text editor package."""
+"""Terminal text editor package """
 
 __all__ = ["__version__"]
 
