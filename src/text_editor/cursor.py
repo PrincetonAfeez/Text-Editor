@@ -1,4 +1,4 @@
-"""Pure cursor movement rules."""
+"""Pure cursor movement rules """
 
 from __future__ import annotations
 
