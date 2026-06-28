@@ -1,4 +1,4 @@
-"""Viewport math for keeping the cursor visible."""
+"""Viewport math for keeping the cursor visible """
 
 from __future__ import annotations
 
