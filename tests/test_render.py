@@ -1,4 +1,4 @@
-"""Headless render tests.
+"""Headless render tests 
 
 A fake ``curses`` is installed by ``tests/conftest.py`` so ``text_editor.render``
 (which imports curses at module load) can be imported without a terminal. The
