@@ -1,3 +1,5 @@
+"""Tests for text_editor.search """
+
 from text_editor.buffer import TextBuffer
 from text_editor.commands import find_next, find_previous, find_query
 from text_editor.search import find_matches, index_at_or_after
