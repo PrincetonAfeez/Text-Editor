@@ -2,6 +2,7 @@
 
 from text_editor.command_parser import parse_command
 
+
 def test_parse_aliases_and_quoted_arguments() -> None:
     request = parse_command(':saveas "notes with spaces.txt"')
 
@@ -35,3 +36,30 @@ def test_parse_set_assignments() -> None:
 
     assert request.ok
     assert request.options == {"tab_width": "2", "expand_tabs": "false"}
+
+
+def test_parser_reports_malformed_quotes() -> None:
+    request = parse_command(':saveas "unterminated path')
+
+    assert request.ok is False
+    assert request.command is None
+    assert request.errors
+    assert "could not parse command" in request.errors[0]
+
+
+def test_parser_handles_large_search_text_without_crashing() -> None:
+    large_query = "x" * 10000
+    request = parse_command(f":find {large_query}")
+
+    assert request.ok
+    assert request.command == "find"
+    assert request.args == [large_query]
+
+
+def test_parser_reports_malformed_escape_sequence() -> None:
+    request = parse_command(':find "bad \\"')
+
+    assert request.ok is False
+    assert request.command is None
+    assert request.errors
+    assert "could not parse command" in request.errors[0]

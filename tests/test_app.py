@@ -156,8 +156,12 @@ def test_run_curses_uses_wrapper(monkeypatch: pytest.MonkeyPatch) -> None:
     assert seen
 
 
-def test_run_curses_without_curses_module(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+def test_run_curses_without_curses_module(
+    monkeypatch: pytest.MonkeyPatch,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
     import builtins
+    import logging
 
     real_import = builtins.__import__
     monkeypatch.delitem(sys.modules, "curses", raising=False)
@@ -168,10 +172,10 @@ def test_run_curses_without_curses_module(monkeypatch: pytest.MonkeyPatch, capsy
         return real_import(name, *args, **kwargs)
 
     monkeypatch.setattr(builtins, "__import__", fake_import)
-    result = run_curses(EditorState())
-    captured = capsys.readouterr()
+    with caplog.at_level(logging.ERROR):
+        result = run_curses(EditorState())
     assert result == 1
-    assert "windows-curses" in captured.err
+    assert "windows-curses" in caplog.text
 
 
 def test_main_delegates_to_run_curses(monkeypatch: pytest.MonkeyPatch) -> None:

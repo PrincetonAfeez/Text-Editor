@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import sys
 from argparse import ArgumentParser
 from collections.abc import Sequence
@@ -17,6 +18,8 @@ from .errors import EditorError
 from .fileio import read_text_file
 from .keymap import keymap_for
 from .state import EditorState, Mode
+
+logger = logging.getLogger(__name__)
 
 
 def build_arg_parser() -> ArgumentParser:
@@ -190,7 +193,9 @@ def run_curses(state: EditorState) -> int:
     try:
         import curses
     except ModuleNotFoundError:
-        print("curses is not available. On Windows, install with: pip install windows-curses", file=sys.stderr)
+        logger.error(
+            "curses is not available. On Windows, install with: pip install windows-curses"
+        )
         return 1
 
     def wrapped(stdscr: Any) -> int:
