@@ -1,3 +1,5 @@
+"""Tests for text_editor.commands """
+
 from pathlib import Path
 
 from text_editor.app import create_initial_state
@@ -190,6 +192,18 @@ def test_wq_quits_clean_named_file_without_rewriting(tmp_path: Path) -> None:
     assert _run(state, ":wq") is True
     assert state.should_quit is True
     assert path.read_text(encoding="utf-8") == "saved\n"
+    assert path.stat().st_mtime_ns == mtime
+
+
+def test_saveas_to_same_clean_path_skips_rewrite(tmp_path: Path) -> None:
+    path = tmp_path / "note.txt"
+    path.write_text("saved\n", encoding="utf-8")
+    state = EditorState(buffer=TextBuffer.from_text("saved\n"), path=path)
+    state.mark_saved()
+    mtime = path.stat().st_mtime_ns
+
+    assert _run(state, f':saveas "{path}"') is True
+    assert "already saved" in state.status_message
     assert path.stat().st_mtime_ns == mtime
 
 
