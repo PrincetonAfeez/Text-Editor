@@ -1,3 +1,5 @@
+"""Tests for text_editor.errors """
+
 from text_editor.errors import EditorError, FileOperationError
 
 
