@@ -1,3 +1,5 @@
+"""Tests for text_editor.undo """
+
 from text_editor.buffer import TextBuffer
 from text_editor.commands import (
     backspace,
