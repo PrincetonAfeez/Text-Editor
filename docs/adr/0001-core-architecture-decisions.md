@@ -1,5 +1,5 @@
 # ADR 0001: Core Architecture Decisions
-
+ 
 ## Status
 
 Accepted.
