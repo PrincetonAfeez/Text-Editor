@@ -25,10 +25,10 @@ jobs:
         run: python -m pip install -e ".[dev]"
 
       - name: Lint (ruff)
-        run: ruff check src tests
+        run: python -m ruff check src tests
 
       - name: Type check (mypy)
-        run: mypy
+        run: python -m mypy
 
       - name: Test (pytest)
-        run: pytest -q --cov=text_editor --cov-report=term-missing
+        run: python -m pytest -q --cov=text_editor --cov-report=term-missing --cov-fail-under=98
