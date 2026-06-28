@@ -1,5 +1,6 @@
-from text_editor.command_parser import parse_command
+"""Tests for text_editor.command_parser """
 
+from text_editor.command_parser import parse_command
 
 def test_parse_aliases_and_quoted_arguments() -> None:
     request = parse_command(':saveas "notes with spaces.txt"')
