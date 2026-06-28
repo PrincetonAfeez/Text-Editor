@@ -1,4 +1,4 @@
-"""Data-driven key binding tables."""
+"""Data-driven key binding tables """
 
 from __future__ import annotations
 
