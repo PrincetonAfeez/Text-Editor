@@ -1,3 +1,5 @@
+"""Tests for text_editor.cursor """
+
 from text_editor.buffer import TextBuffer
 from text_editor.cursor import Cursor, clamp, move_end, move_home, move_left, move_page_down, move_page_up, move_right
 
