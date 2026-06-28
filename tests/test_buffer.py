@@ -1,5 +1,6 @@
-from text_editor.buffer import TextBuffer, detect_line_ending
+"""Tests for text_editor.buffer """
 
+from text_editor.buffer import TextBuffer, detect_line_ending
 
 def test_text_roundtrip_preserves_trailing_newline_and_line_ending() -> None:
     buffer = TextBuffer.from_text("one\r\ntwo\r\n")
