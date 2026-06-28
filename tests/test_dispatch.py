@@ -1,4 +1,4 @@
-"""Tests for app key dispatch without a live curses terminal.
+"""Tests for app key dispatch without a live curses terminal 
 
 ``handle_key`` never touches curses or ``self.stdscr`` (only ``self.renderer``),
 so these tests build a ``CursesApp`` via ``object.__new__`` and inject a fake
