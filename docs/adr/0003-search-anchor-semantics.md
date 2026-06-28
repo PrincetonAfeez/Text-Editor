@@ -1,5 +1,5 @@
 # ADR 0003: Search Anchor Semantics
-
+ 
 ## Status
 
 Accepted.
