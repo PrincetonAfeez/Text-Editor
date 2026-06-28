@@ -6,8 +6,17 @@
 #
 ast-serialize==0.5.0
     # via mypy
+build==1.5.0
+    # via pip-tools
+click==8.4.1
+    # via pip-tools
 colorama==0.4.6
-    # via pytest
+    # via
+    #   build
+    #   click
+    #   pytest
+coverage[toml]==7.14.3
+    # via pytest-cov
 iniconfig==2.3.0
     # via pytest
 librt==0.11.0
@@ -17,18 +26,39 @@ mypy==2.1.0
 mypy-extensions==1.1.0
     # via mypy
 packaging==26.2
-    # via pytest
+    # via
+    #   build
+    #   pytest
+    #   wheel
 pathspec==1.1.1
     # via mypy
+pip-tools==7.5.3
+    # via terminal-text-editor (pyproject.toml)
 pluggy==1.6.0
-    # via pytest
+    # via
+    #   pytest
+    #   pytest-cov
 pygments==2.20.0
     # via pytest
+pyproject-hooks==1.2.0
+    # via
+    #   build
+    #   pip-tools
 pytest==9.1.1
+    # via
+    #   pytest-cov
+    #   terminal-text-editor (pyproject.toml)
+pytest-cov==7.1.0
     # via terminal-text-editor (pyproject.toml)
 ruff==0.15.18
     # via terminal-text-editor (pyproject.toml)
 typing-extensions==4.15.0
     # via mypy
+wheel==0.47.0
+    # via pip-tools
 windows-curses==2.4.2 ; sys_platform == "win32"
     # via terminal-text-editor (pyproject.toml)
+
+# The following packages are considered to be unsafe in a requirements file:
+# pip
+# setuptools
