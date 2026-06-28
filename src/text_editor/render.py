@@ -1,4 +1,4 @@
-"""Thin curses drawing adapter."""
+"""Thin curses drawing adapter """
 
 from __future__ import annotations
 
