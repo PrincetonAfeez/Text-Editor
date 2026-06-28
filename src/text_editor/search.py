@@ -1,4 +1,4 @@
-"""Search state and match navigation."""
+"""Search state and match navigation """
 
 from __future__ import annotations
 
