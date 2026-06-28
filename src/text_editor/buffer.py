@@ -1,4 +1,4 @@
-"""Curses-independent text buffer operations."""
+"""Curses-independent text buffer operations """
 
 from __future__ import annotations
 
